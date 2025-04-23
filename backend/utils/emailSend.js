@@ -41,15 +41,16 @@ async function sendEmailWithAttachment( recipient,items) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'lde4524@gmail.com',
-            pass: 'cppqyhrxkzq'
+            user: `${process.env.APP_EMAIL}`,
+            pass: `${process.env.APP_PASSWORD}`
+          
         }
     });
     let body = dataParserForItems(items)
       const pdfContent = generatePDF(body)
 
       const mailOptions = {
-        from:'ldead4524@gmail.com' , 
+        from:`${process.env.APP_EMAIL}` , 
         to: recipient,
         subject: 'Expense Report for This Month',
         text: 'Please find your expense report attached.',
